@@ -29,7 +29,7 @@ sender = input('Enter sender email (Currently @gmail.com only): ' + '\n')
 password = getpass.getpass()
 receiver = input('\n' + 'Enter phone number (Currently Telus/Koodo Only): ' + '\n') + '@msg.telus.com'
 
-first_ad = '<table class=" regular-ad js-hover "'
+ad_start = '<table class=" regular-ad js-hover "'
 image_start = '<img src="'
 image_end = '"'
 link_start = '<a href="'
@@ -51,10 +51,10 @@ while loop:
     with urllib.request.urlopen(req) as response:
         page = response.read().decode(response.headers.get_content_charset())
 
-    front_page_ads = page.count(first_ad)
+    front_page_ads = page.count(ad_start)
     page_sub = page.replace('\n', '').replace('\r', '')
     response.close()
-    page_sub = find_between(page_sub, first_ad, sub_bottom)
+    page_sub = find_between(page_sub, ad_start, sub_bottom)
 
     ads = []
     for x in range(0, front_page_ads):
